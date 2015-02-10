@@ -4,7 +4,7 @@
 name:                HaskellDev
 version:             0.1.0.0
 synopsis:            Nothing but beginner haskell code
--- description:         
+description:         Nothing but beginner haskell code
 homepage:            https://github.com/coelhudo/HaskellDev
 -- license:             
 license-file:        LICENSE
@@ -16,6 +16,8 @@ build-type:          Simple
 cabal-version:       >=1.8
 
 executable HaskellDev
-  -- main-is:             
-  -- other-modules:       
+  ghc-options:         -Wall
   build-depends:       base ==4.6.*
+  hs-source-dirs:      src
+  main-is:	       Main.hs
+  --build-depends
