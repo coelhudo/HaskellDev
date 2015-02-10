@@ -10,10 +10,12 @@ type BaseballStats = (BL.ByteString, Int, BL.ByteString, Int)
 main :: IO ()
 main = do
   csvData <- BL.readFile "batting.csv"
-  let v = decode NoHeader csvData :: Either String (V.Vector BaseballStats)
-  let summed = fmap (V.foldr summer 0) v
+  let summed = fmap (V.foldr summer 0) (baseballStats csvData)
   putStrLn $ "Total atBats was " ++ (show summed)
-    where summer entry n = n + (fourth entry)
+    where summer = (+) . fourth
 
 fourth :: (a,b,c,d) -> d
 fourth (_, _, _, d) = d
+
+baseballStats :: BL.ByteString -> Either String (V.Vector BaseballStats)
+baseballStats = decode NoHeader
