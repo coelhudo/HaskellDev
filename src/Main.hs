@@ -13,4 +13,7 @@ main = do
   let v = decode NoHeader csvData :: Either String (V.Vector BaseballStats)
   let summed = fmap (V.foldr summer 0) v
   putStrLn $ "Total atBats was " ++ (show summed)
-    where summer (name, year, team, atBats) n = n + atBats
+    where summer entry n = n + (fourth entry)
+
+fourth :: (a,b,c,d) -> d
+fourth (_, _, _, d) = d
